@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Circuit Details{% endblock %}
+
+{% block content %}
+<div class="card mt-4">
+    <div class="card-header">
+        <h1 class="card-title">Circuit {{ object.circuit_number }}</h1>
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Description:</strong> {{ object.description }}</li>
+            <li class="list-group-item"><strong>Breaker Size:</strong> {{ object.breaker_size }}</li>
+            <li class="list-group-item"><strong>Pole Type:</strong> {{ object.pole_type }}</li>
+            <li class="list-group-item"><strong>GFCI:</strong> {{ object.gfci|yesno:"Yes,No" }}</li>
+            <li class="list-group-item"><strong>AFCI:</strong> {{ object.afci|yesno:"Yes,No" }}</li>
+            <li class="list-group-item"><strong>CAFI:</strong> {{ object.cafi|yesno:"Yes,No" }}</li>
+            <li class="list-group-item"><strong>Rooms:</strong> 
+                {% for room in object.rooms.all %}
+                    {{ room.name }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </li>
+            <li class="list-group-item"><strong>Diagrams:</strong>
+                {% if object.diagrams.exists %}
+                    <ul>
+                        {% for diagram in object.diagrams.all %}
+                            <li><img src="{{ diagram.image.url }}" alt="{{ diagram.description }}" class="img-thumbnail" width="150"> {{ diagram.description }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    No diagrams uploaded
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+    <div class="card-footer text-right">
+        <form method="post" action="{% url 'circuit_delete' object.pk %}" class="mt-3">
+            {% csrf_token %}
+            <a class="btn btn-info" href="{% url 'circuit_update' object.pk %}">Edit</a>
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a class="btn btn-secondary" href="{% url 'circuit_list' %}">Back to list</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

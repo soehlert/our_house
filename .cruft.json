@@ -1,0 +1,38 @@
+{
+  "template": "https://github.com/cookiecutter/cookiecutter-django",
+  "commit": "aeb151d34866b06c207e3fd999e213b78db2d896",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "Our House",
+      "project_slug": "our_house",
+      "description": "Storing information you want to have handy as a homeowner",
+      "author_name": "Sam Oehlert",
+      "domain_name": "redbrickranch.online",
+      "email": "sam.oehlert@gmail.com",
+      "version": "0.1.0",
+      "open_source_license": "MIT",
+      "username_type": "username",
+      "timezone": "UTC",
+      "windows": "n",
+      "editor": "PyCharm",
+      "use_docker": "y",
+      "postgresql_version": "16",
+      "cloud_provider": "None",
+      "mail_service": "Other SMTP",
+      "use_async": "n",
+      "use_drf": "y",
+      "frontend_pipeline": "None",
+      "use_celery": "n",
+      "use_mailpit": "n",
+      "use_sentry": "n",
+      "use_whitenoise": "y",
+      "use_heroku": "n",
+      "ci_tool": "Github",
+      "keep_local_envs_in_vcs": "y",
+      "debug": "y",
+      "_template": "https://github.com/cookiecutter/cookiecutter-django"
+    }
+  },
+  "directory": null
+}

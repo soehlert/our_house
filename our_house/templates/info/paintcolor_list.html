@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Paint Colors{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mt-4">
+    <h1>Paint Colors</h1>
+    <a class="btn btn-primary" href="{% url 'paintcolor_create' %}">Add New Paint Color</a>
+</div>
+<table class="table table-dark table-striped mt-4">
+    <thead>
+        <tr>
+            <th>Room</th>
+            <th>Paint Code</th>
+            <th>Paint Color</th>
+            <th>Paint Base</th>
+            <th>Purchase Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for paintcolor in object_list %}
+        <tr>
+            <td>{{ paintcolor.room.name }}</td>
+            <td>{{ paintcolor.paint_code }}</td>
+            <td>{{ paintcolor.paint_color }}</td>
+            <td>{{ paintcolor.paint_base }}</td>
+            <td>{{ paintcolor.purchase_date }}</td>
+            <td>
+                <a class="btn btn-info btn-sm" href="{% url 'paintcolor_detail' paintcolor.pk %}">View</a>
+                <a class="btn btn-warning btn-sm" href="{% url 'paintcolor_update' paintcolor.pk %}">Edit</a>
+                <a class="btn btn-danger btn-sm" href="{% url 'paintcolor_delete' paintcolor.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

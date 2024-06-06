@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% if form.instance.pk %}Edit{% else %}Add{% endif %} Circuit{% endblock %}
+
+{% block content %}
+<div class="card mt-4">
+    <div class="card-header">
+        <h1 class="card-title">{% if form.instance.pk %}Edit{% else %}Add{% endif %} Circuit</h1>
+    </div>
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data" id="circuit-form">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{ form.circuit_number|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-6">
+                    {{ form.description|as_crispy_field }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{ form.breaker_size|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-6">
+                    {{ form.pole_type|as_crispy_field }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{ form.gfci|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-6">
+                    {{ form.afci|as_crispy_field }}
+                </div>
+                <div class="form-group col-md-6">
+                    {{ form.cafi|as_crispy_field }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form.rooms|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.diagrams|as_crispy_field }}
+            </div>
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">{% if form.instance.pk %}Update{% else %}Save{% endif %}</button>
+                <a class="btn btn-secondary" href="{% url 'circuit_list' %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
