@@ -1,17 +1,22 @@
 from rest_framework import serializers
-from ..models import Appliance, Room, PaintColor, Circuit, CircuitDiagram
+
+from ..models import Appliance
+from ..models import Circuit
+from ..models import CircuitDiagram
+from ..models import PaintColor
+from ..models import Room
 
 
 class ApplianceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Appliance
-        fields = '__all__'
+        fields = "__all__"
 
 
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
-        fields = '__all__'
+        fields = "__all__"
 
 
 class PaintColorSerializer(serializers.ModelSerializer):
@@ -19,13 +24,13 @@ class PaintColorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PaintColor
-        fields = '__all__'
+        fields = "__all__"
 
 
 class CircuitDiagramSerializer(serializers.ModelSerializer):
     class Meta:
         model = CircuitDiagram
-        fields = '__all__'
+        fields = "__all__"
 
 
 class CircuitSerializer(serializers.ModelSerializer):
@@ -34,4 +39,4 @@ class CircuitSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Circuit
-        fields = '__all__'
+        fields = "__all__"

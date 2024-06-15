@@ -1,8 +1,15 @@
 from rest_framework import viewsets
-from ..models import Appliance, Room, PaintColor, Circuit, CircuitDiagram
-from .serializers import (
-    ApplianceSerializer, RoomSerializer, PaintColorSerializer, CircuitSerializer, CircuitDiagramSerializer
-)
+
+from ..models import Appliance
+from ..models import Circuit
+from ..models import CircuitDiagram
+from ..models import PaintColor
+from ..models import Room
+from .serializers import ApplianceSerializer
+from .serializers import CircuitDiagramSerializer
+from .serializers import CircuitSerializer
+from .serializers import PaintColorSerializer
+from .serializers import RoomSerializer
 
 
 class ApplianceViewSet(viewsets.ModelViewSet):

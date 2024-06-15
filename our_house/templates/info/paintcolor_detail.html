@@ -1,27 +1,38 @@
 {% extends 'base.html' %}
-{% load static %}
-{% block title %}Paint Color Details{% endblock %}
 
+{% load static %}
+
+{% block title %}Paint Color Details{% endblock %}
 {% block content %}
-<div class="card mt-4">
+  <div class="card mt-4">
     <div class="card-header">
-        <h1 class="card-title">Paint Color in {{ object.room.name }}</h1>
+      <h1 class="card-title">Paint Color in {{ object.room.name }}</h1>
     </div>
     <div class="card-body">
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item"><strong>Paint Code:</strong> {{ object.paint_code }}</li>
-            <li class="list-group-item"><strong>Paint Color:</strong> {{ object.paint_color }}</li>
-            <li class="list-group-item"><strong>Paint Base:</strong> {{ object.paint_base }}</li>
-            <li class="list-group-item"><strong>Purchase Date:</strong> {{ object.purchase_date|date:"F j, Y" }}</li>
-        </ul>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <strong>Paint Code:</strong> {{ object.paint_code }}
+        </li>
+        <li class="list-group-item">
+          <strong>Paint Color:</strong> {{ object.paint_color }}
+        </li>
+        <li class="list-group-item">
+          <strong>Paint Base:</strong> {{ object.paint_base }}
+        </li>
+        <li class="list-group-item">
+          <strong>Purchase Date:</strong> {{ object.purchase_date|date:"F j, Y" }}
+        </li>
+      </ul>
     </div>
     <div class="card-footer text-right">
-        <form method="post" action="{% url 'paintcolor_delete' object.pk %}" class="mt-3">
-            {% csrf_token %}
-            <a class="btn btn-info" href="{% url 'paintcolor_update' object.pk %}">Edit</a>
-            <button type="submit" class="btn btn-danger">Delete</button>
-            <a class="btn btn-secondary" href="{% url 'paintcolor_list' %}">Back to list</a>
-        </form>
+      <form method="post"
+            action="{% url 'paintcolor_delete' object.pk %}"
+            class="mt-3">
+        {% csrf_token %}
+        <a class="btn btn-info" href="{% url 'paintcolor_update' object.pk %}">Edit</a>
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a class="btn btn-secondary" href="{% url 'paintcolor_list' %}">Back to list</a>
+      </form>
     </div>
-</div>
+  </div>
 {% endblock %}

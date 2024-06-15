@@ -1,39 +1,42 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
 {% block title %}Appliances{% endblock %}
-
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mt-4">
+  <div class="d-flex justify-content-between align-items-center mt-4">
     <h1>Appliances</h1>
     <a class="btn btn-primary" href="{% url 'appliance_create' %}">Add New Appliance</a>
-</div>
-<table class="table table-dark table-striped mt-4">
+  </div>
+  <table class="table table-dark table-striped mt-4">
     <thead>
-        <tr>
-            <th>Name</th>
-            <th>Model Number</th>
-            <th>Serial Number</th>
-            <th>Type</th>
-            <th>Purchase Date</th>
-            <th>Actions</th>
-        </tr>
+      <tr>
+        <th>Name</th>
+        <th>Model Number</th>
+        <th>Serial Number</th>
+        <th>Type</th>
+        <th>Purchase Date</th>
+        <th>Actions</th>
+      </tr>
     </thead>
     <tbody>
-        {% for appliance in object_list %}
+      {% for appliance in object_list %}
         <tr>
-            <td>{{ appliance.name }}</td>
-            <td>{{ appliance.model_number }}</td>
-            <td>{{ appliance.serial_number }}</td>
-            <td>{{ appliance.appliance_type }}</td>
-            <td>{{ appliance.purchase_date }}</td>
-            <td>
-                <a class="btn btn-info btn-sm" href="{% url 'appliance_detail' appliance.pk %}">View</a>
-                <a class="btn btn-warning btn-sm" href="{% url 'appliance_update' appliance.pk %}">Edit</a>
-                <a class="btn btn-danger btn-sm" href="{% url 'appliance_delete' appliance.pk %}">Delete</a>
-            </td>
+          <td>{{ appliance.name }}</td>
+          <td>{{ appliance.model_number }}</td>
+          <td>{{ appliance.serial_number }}</td>
+          <td>{{ appliance.appliance_type }}</td>
+          <td>{{ appliance.purchase_date }}</td>
+          <td>
+            <a class="btn btn-info btn-sm"
+               href="{% url 'appliance_detail' appliance.pk %}">View</a>
+            <a class="btn btn-warning btn-sm"
+               href="{% url 'appliance_update' appliance.pk %}">Edit</a>
+            <a class="btn btn-danger btn-sm"
+               href="{% url 'appliance_delete' appliance.pk %}">Delete</a>
+          </td>
         </tr>
-        {% endfor %}
+      {% endfor %}
     </tbody>
-</table>
+  </table>
 {% endblock %}

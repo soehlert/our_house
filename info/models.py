@@ -3,18 +3,18 @@ from django.db import models
 
 class Appliance(models.Model):
     APPLIANCE_TYPE_CHOICES = [
-        ('gas', 'Gas'),
-        ('electric', 'Electric'),
-        ('induction', 'Induction'),
+        ("gas", "Gas"),
+        ("electric", "Electric"),
+        ("induction", "Induction"),
     ]
 
     name = models.CharField(max_length=100)
     model_number = models.CharField(max_length=100)
     serial_number = models.CharField(max_length=100, unique=True)
     appliance_type = models.CharField(max_length=10, choices=APPLIANCE_TYPE_CHOICES)
-    receipt = models.FileField(upload_to='receipts/', blank=True, null=True)
-    owners_manual = models.FileField(upload_to='owners_manuals/', blank=True, null=True)
-    image = models.ImageField(upload_to='appliance_images/', null=True, blank=True)
+    receipt = models.FileField(upload_to="receipts/", blank=True, null=True)
+    owners_manual = models.FileField(upload_to="owners_manuals/", blank=True, null=True)
+    image = models.ImageField(upload_to="appliance_images/", null=True, blank=True)
     purchase_location = models.CharField(max_length=100)
     registered = models.BooleanField(default=False)
     purchase_date = models.DateField()
@@ -44,7 +44,7 @@ class PaintColor(models.Model):
 
 
 class CircuitDiagram(models.Model):
-    image = models.ImageField(upload_to='circuit_diagrams/')
+    image = models.ImageField(upload_to="circuit_diagrams/")
     description = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
@@ -53,11 +53,11 @@ class CircuitDiagram(models.Model):
 
 class Circuit(models.Model):
     BREAKER_SIZE_CHOICES = [
-        ('15A', '15A'),
-        ('20A', '20A'),
-        ('30A', '30A'),
-        ('40A', '40A'),
-        ('50A', '50A'),
+        ("15A", "15A"),
+        ("20A", "20A"),
+        ("30A", "30A"),
+        ("40A", "40A"),
+        ("50A", "50A"),
     ]
 
     rooms = models.ManyToManyField(Room, blank=True)
@@ -67,7 +67,10 @@ class Circuit(models.Model):
     gfci = models.BooleanField(default=False)
     afci = models.BooleanField(default=False)
     cafi = models.BooleanField(default=False)
-    pole_type = models.CharField(max_length=10, choices=[('single', 'Single Pole'), ('double', 'Double Pole')])
+    pole_type = models.CharField(
+        max_length=10,
+        choices=[("single", "Single Pole"), ("double", "Double Pole")],
+    )
     diagrams = models.ManyToManyField(CircuitDiagram, blank=True)
 
     def __str__(self):

@@ -1,45 +1,53 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
 {% block title %}Circuits{% endblock %}
-
 {% block content %}
-<div class="d-flex justify-content-between align-items-center mt-4">
+  <div class="d-flex justify-content-between align-items-center mt-4">
     <h1>Circuits</h1>
     <a class="btn btn-primary" href="{% url 'circuit_create' %}">Add New Circuit</a>
-</div>
-<table class="table table-dark table-striped mt-4">
+  </div>
+  <table class="table table-dark table-striped mt-4">
     <thead>
-        <tr>
-            <th>Number</th>
-            <th>Description</th>
-            <th>Breaker Size</th>
-            <th>GFCI</th>
-            <th>AFCI</th>
-            <th>CAFI</th>
-            <th>Pole Type</th>
-            <th>Rooms</th>
-            <th>Actions</th>
-        </tr>
+      <tr>
+        <th>Number</th>
+        <th>Description</th>
+        <th>Breaker Size</th>
+        <th>GFCI</th>
+        <th>AFCI</th>
+        <th>CAFI</th>
+        <th>Pole Type</th>
+        <th>Rooms</th>
+        <th>Actions</th>
+      </tr>
     </thead>
     <tbody>
-        {% for circuit in object_list %}
+      {% for circuit in object_list %}
         <tr>
-            <td>{{ circuit.circuit_number }}</td>
-            <td>{{ circuit.description }}</td>
-            <td>{{ circuit.breaker_size }}</td>
-            <td>{{ circuit.gfci|yesno:"Yes,No" }}</td>
-            <td>{{ circuit.afci|yesno:"Yes,No" }}</td>
-            <td>{{ circuit.cafi|yesno:"Yes,No" }}</td>
-            <td>{{ circuit.pole_type }}</td>
-            <td>{% for room in circuit.rooms.all %}{{ room.name }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
-            <td>
-                <a class="btn btn-info btn-sm" href="{% url 'circuit_detail' circuit.pk %}">View</a>
-                <a class="btn btn-warning btn-sm" href="{% url 'circuit_update' circuit.pk %}">Edit</a>
-                <a class="btn btn-danger btn-sm" href="{% url 'circuit_delete' circuit.pk %}">Delete</a>
-            </td>
+          <td>{{ circuit.circuit_number }}</td>
+          <td>{{ circuit.description }}</td>
+          <td>{{ circuit.breaker_size }}</td>
+          <td>{{ circuit.gfci|yesno:"Yes,No" }}</td>
+          <td>{{ circuit.afci|yesno:"Yes,No" }}</td>
+          <td>{{ circuit.cafi|yesno:"Yes,No" }}</td>
+          <td>{{ circuit.pole_type }}</td>
+          <td>
+            {% for room in circuit.rooms.all %}
+              {{ room.name }}
+              {% if not forloop.last %},{% endif %}
+            {% endfor %}
+          </td>
+          <td>
+            <a class="btn btn-info btn-sm"
+               href="{% url 'circuit_detail' circuit.pk %}">View</a>
+            <a class="btn btn-warning btn-sm"
+               href="{% url 'circuit_update' circuit.pk %}">Edit</a>
+            <a class="btn btn-danger btn-sm"
+               href="{% url 'circuit_delete' circuit.pk %}">Delete</a>
+          </td>
         </tr>
-        {% endfor %}
+      {% endfor %}
     </tbody>
-</table>
+  </table>
 {% endblock %}

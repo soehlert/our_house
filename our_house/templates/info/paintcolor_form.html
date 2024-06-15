@@ -1,43 +1,53 @@
 {% extends 'base.html' %}
+
 {% load static %}
 {% load crispy_forms_tags %}
 
-{% block title %}{% if form.instance.pk %}Edit{% else %}Add{% endif %} Paint Color{% endblock %}
-
+{% block title %}
+  {% if form.instance.pk %}
+    Edit
+  {% else %}
+    Add
+  {% endif %}
+  Paint Color
+{% endblock %}
 {% block content %}
-<div class="card mt-4">
+  <div class="card mt-4">
     <div class="card-header">
-        <h1 class="card-title">{% if form.instance.pk %}Edit{% else %}Add{% endif %} Paint Color</h1>
+      <h1 class="card-title">
+        {% if form.instance.pk %}
+          Edit
+        {% else %}
+          Add
+        {% endif %}
+        Paint Color
+      </h1>
     </div>
     <div class="card-body">
-        <form method="post" enctype="multipart/form-data" id="paintcolor-form">
-            {% csrf_token %}
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    {{ form.paint_color|as_crispy_field }}
-                </div>
-                <div class="form-group col-md-6">
-                    {{ form.paint_base|as_crispy_field }}
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    {{ form.paint_code|as_crispy_field }}
-                </div>
-                <div class="form-group col-md-6">
-                    {{ form.purchase_date|as_crispy_field }}
-                </div>              
-            </div>
-            <div class="form-row">  
-              <div class="form-group col-md-6">
-                  {{ form.room|as_crispy_field }}
-              </div>
-            </div>
-            <div class="form-group mt-3">
-                <button type="submit" class="btn btn-primary">{% if form.instance.pk %}Update{% else %}Save{% endif %}</button>
-                <a class="btn btn-secondary" href="{% url 'paintcolor_list' %}">Cancel</a>
-            </div>
-        </form>
+      <form method="post" enctype="multipart/form-data" id="paintcolor-form">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-6">{{ form.paint_color|as_crispy_field }}</div>
+          <div class="form-group col-md-6">{{ form.paint_base|as_crispy_field }}</div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">{{ form.paint_code|as_crispy_field }}</div>
+          <div class="form-group col-md-6">{{ form.purchase_date|as_crispy_field }}</div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">{{ form.room|as_crispy_field }}</div>
+        </div>
+        <div class="form-group mt-3">
+          <button type="submit" class="btn btn-primary">
+            {% if form.instance.pk %}
+              Update
+            {% else %}
+              Save
+            {% endif %}
+          </button>
+          <a class="btn btn-secondary" href="{% url 'paintcolor_list' %}">Cancel</a>
+        </div>
+      </form>
     </div>
-</div>
+  </div>
 {% endblock %}

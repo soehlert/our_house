@@ -1,19 +1,23 @@
 {% extends 'base.html' %}
-{% load static %}
-{% block title %}Delete {{ appliance.name }}{% endblock %}
 
+{% load static %}
+
+{% block title %}Delete {{ appliance.name }}{% endblock %}
 {% block content %}
-<div class="card mt-4">
+  <div class="card mt-4">
     <div class="card-header">
-        <h1 class="card-title">Delete {{ appliance.name }}</h1>
+      <h1 class="card-title">Delete {{ appliance.name }}</h1>
     </div>
     <div class="card-body">
-        <p>Are you sure you want to delete the appliance <strong>{{ appliance.name }}</strong>?</p>
-        <form method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Confirm</button>
-            <a class="btn btn-secondary" href="{% url 'appliance_detail' appliance.pk %}">Cancel</a>
-        </form>
+      <p>
+        Are you sure you want to delete the appliance <strong>{{ appliance.name }}</strong>?
+      </p>
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Confirm</button>
+        <a class="btn btn-secondary"
+           href="{% url 'appliance_detail' appliance.pk %}">Cancel</a>
+      </form>
     </div>
-</div>
+  </div>
 {% endblock %}

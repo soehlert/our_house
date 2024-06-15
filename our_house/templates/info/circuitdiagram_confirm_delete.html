@@ -1,20 +1,20 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
 {% block title %}Delete Circuit Diagram{% endblock %}
-
 {% block content %}
-<div class="card mt-4">
+  <div class="card mt-4">
     <div class="card-header">
-        <h1 class="card-title">Delete Circuit Diagram</h1>
+      <h1 class="card-title">Delete Circuit Diagram</h1>
     </div>
     <div class="card-body">
-        <p>Are you sure you want to delete the circuit diagram "{{ object }}"?</p>
-        <form method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Delete</button>
-            <a href="{% url 'circuit_list' %}" class="btn btn-secondary">Cancel</a>
-        </form>
+      <p>Are you sure you want to delete the circuit diagram "{{ object }}"?</p>
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'circuit_list' %}" class="btn btn-secondary">Cancel</a>
+      </form>
     </div>
-</div>
+  </div>
 {% endblock %}
