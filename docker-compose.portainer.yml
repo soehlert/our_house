@@ -19,7 +19,8 @@ services:
       - '8111:8000'
     command: /start
     networks:
-      - macvlan_network
+      macvlan_network:
+        ipv4_address: 192.168.2.99
 
 networks:
   macvlan_network:
