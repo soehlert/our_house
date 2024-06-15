@@ -18,3 +18,9 @@ services:
     ports:
       - '8111:8000'
     command: /start
+    networks:
+      - macvlan_network
+
+networks:
+  macvlan_network:
+    external: true
