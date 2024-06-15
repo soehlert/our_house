@@ -48,17 +48,19 @@
           {% endif %}
         </li>
         <li class="list-group-item">
-          <strong>Additional PDFs:</strong>
-          {% if object.additional_pdfs.exists %}
-            <ul>
-              {% for pdf in object.additional_pdfs.all %}
-                <li>
-                  <a href="{{ pdf.document.url }}" target="_blank">{{ pdf.description }}</a>
-                </li>
-              {% endfor %}
-            </ul>
+          <strong>Specifications:</strong>
+          {% if object.specs.exists %}
+            <a href="{{ object.owners_manual.url }}" target="_blank">View specs</a>
           {% else %}
-            No additional PDFs
+            No specs uploaded
+          {% endif %}
+        </li>
+        <li class="list-group-item">
+          <strong>Installation manual:</strong>
+          {% if object.install_docs.exists %}
+            <a href="{{ object.install_docs.url }}" target="_blank">View installation manual</a>
+          {% else %}
+            No installation manual uploaded
           {% endif %}
         </li>
         <li class="list-group-item">

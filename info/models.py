@@ -14,6 +14,8 @@ class Appliance(models.Model):
     appliance_type = models.CharField(max_length=10, choices=APPLIANCE_TYPE_CHOICES)
     receipt = models.FileField(upload_to="receipts/", blank=True, null=True)
     owners_manual = models.FileField(upload_to="owners_manuals/", blank=True, null=True)
+    specs = models.FileField(upload_to="specs/", blank=True, null=True)
+    install_docs = models.FileField(upload_to="install_docs/", blank=True, null=True)
     image = models.ImageField(upload_to="appliance_images/", null=True, blank=True)
     purchase_location = models.CharField(max_length=100)
     registered = models.BooleanField(default=False)
