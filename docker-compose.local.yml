@@ -10,8 +10,6 @@ services:
       dockerfile: ./compose/local/django/Dockerfile
     image: our_house_local_django
     container_name: our_house_local_django
-    depends_on:
-      - postgres
     volumes:
       - /app
     env_file:
