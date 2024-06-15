@@ -10,11 +10,25 @@ services:
       dockerfile: ./compose/local/django/Dockerfile
     image: our_house_local_django
     container_name: our_house_local_django
+    depends_on:
+      - postgres
     volumes:
-      - /app
+      - .:/app:z
     env_file:
       - ./.envs/.local/.django
-      - stack.env
+      - ./.envs/.local/.postgres
     ports:
       - '8111:8000'
     command: /start
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./compose/production/postgres/Dockerfile
+    image: our_house_production_postgres
+    container_name: our_house_local_postgres
+    volumes:
+      - our_house_local_postgres_data:/var/lib/postgresql/data
+      - our_house_local_postgres_data_backups:/backups
+    env_file:
+      - ./.envs/.local/.postgres
